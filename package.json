@@ -1,0 +1,27 @@
+{
+    "name": "algoml-lang",
+    "displayName": "AlgoML Lang",
+    "description": "Syntax highlighting for the Algorand Modelling Language",
+    "version": "1.0.0",
+    "publisher": "RobertoPettinau",
+    "repository": "https://github.com/petitnau/algoml-vscode",
+    "engines": {
+        "vscode": "^1.59.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "algoml",
+            "aliases": ["AlgoML", "algoml"],
+            "extensions": [".algoml",".aml"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "algoml",
+            "scopeName": "source.algoml",
+            "path": "./syntaxes/algoml.tmLanguage.json"
+        }]
+    }
+}
