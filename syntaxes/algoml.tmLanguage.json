@@ -28,6 +28,8 @@
 				"include": "#types"
 			},{
 				"include": "#clause-keyword"
+			},{
+				"include": "#oncompletion"
 			}]
 		},
 		"declarations": {
@@ -161,12 +163,15 @@
 		},
 		"function-clause": {
 			"patterns": [{
-				"match": "(?:([_a-zA-Z][_\\w]*)\\s+)?([_a-zA-Z][_\\w]*)\\(((?:\\w+\\s+\\w+,\\s+)*(?:\\w+\\s+\\w+)|(?:\\w+\\s+\\w+)?)\\)",
-				"captures": {
+				"begin":"(?:([_a-zA-Z][_\\w]*)\\s+)?([_a-zA-Z][_\\w]*)\\s*\\(",
+				"beginCaptures": {
 					"1": {"patterns": [{"include": "#oncompletion"}]},
-					"2": {"patterns": [{"include": "#function-name"}]},
-					"3": {"patterns": [{"include": "#parameters"}]}
-				}
+					"2": {"patterns": [{"include": "#function-name"}]}
+				},
+				"patterns": [{
+					"include": "#parameters"
+				}],
+				"end": "\\)"
 			},{
 				"include": "#block"
 			}]
@@ -180,7 +185,7 @@
 		"clause-keyword": {
 			"patterns": [{
 				"name": "support.function.algoml",
-				"match": "@(pay|close|timestamp|round|assert|from|newtok|gstate|lstate)"
+				"match": "@(pay|close|timestamp|round|assert|from|newtok|gstate|lstate)\\b"
 			}]
 		},
 		"block": {
@@ -199,7 +204,7 @@
 		},
 		"parameters": {
 			"patterns": [{
-				"match": "([_a-zA-Z][_\\w]*)\\s+([_a-zA-Z][_\\w]*), (.*)",
+				"match": "([_a-zA-Z][_\\w]*)\\s+([_a-zA-Z][_\\w]*),\\s*([^\\)]*)",
 				"captures": {
 					"1": {"patterns": [{"include": "#types"}]},
 					"2": {"patterns": [{"include": "#function-variable"}]},
@@ -211,6 +216,8 @@
 					"1": {"patterns": [{"include": "#types"}]},
 					"2": {"patterns": [{"include": "#function-variable"}]}
 				}
+			},{
+				"include": "#types"
 			}]
 		},
 		"command": {
@@ -241,13 +248,13 @@
 		"state-selector": {
 			"patterns": [{
 				"name": "markup.changed.algoml",
-				"match": "glob|loc"
+				"match": "\\b(glob|loc)\\b"
 			}]
 		},
 		"mut-modifier": {
 			"patterns": [{
 				"name": "keyword.other.algoml",
-				"match": "mut"
+				"match": "\\b(mut)\\b"
 			}]
 		},
 		"if-command": {
@@ -373,7 +380,7 @@
 		"bindings": {
 			"patterns": [{
 				"name": "variable.parameter.algoml",
-				"match": "\\$\\w+\\b"
+				"match": "\\$([_a-zA-Z][_\\w]*)\\b"
 			}]
 		},
 		"types": {

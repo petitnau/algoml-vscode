@@ -2,7 +2,7 @@
 	"name": "algoml-lang",
 	"displayName": "AlgoML Lang",
 	"description": "Syntax highlighting for the Algorand Modelling Language",
-	"version": "1.1.0",
+	"version": "1.1.1",
 	"publisher": "RobertoPettinau",
 	"repository": "https://github.com/petitnau/algoml-vscode",
 	"engines": {
@@ -20,8 +20,8 @@
 					"algoml"
 				],
 				"extensions": [
-					".algoml",
-					".aml"
+					".aml",
+					".algoml"
 				],
 				"configuration": "./language-configuration.json"
 			}

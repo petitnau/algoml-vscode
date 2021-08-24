@@ -4,8 +4,6 @@ AlgoML is a high-level DSL for Algorand contracts that compiles into TEAL.
 
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
-
 ### 1.0.0
 
 Initial release of algoml-lang
@@ -14,3 +12,7 @@ Initial release of algoml-lang
 
 Add highlighting on noncompleted clauses and declarations
 
+### 1.1.1
+
+- Fix highlighting on function creation
+- Fix parts of words appearing as keywords
