@@ -13,17 +13,38 @@
 		},
 		{
 			"include": "#clause"
+		},
+		{
+			"include": "#keywords"
 		}
 	],
 	"repository": {
+		"keywords": {
+			"patterns": [{
+				"include": "#state-selector"
+			},{
+				"include": "#mut-modifier"
+			},{
+				"include": "#types"
+			},{
+				"include": "#clause-keyword"
+			}]
+		},
 		"declarations": {
 			"patterns": [{
-				"match": "(\\w+)\\s+(?:(\\w+)\\s+)?(\\w+)\\s+([_a-zA-Z][_\\w]*)",
+				"match": "(\\w+)\\s+(mut)\\s+(\\w+)\\s+([_a-zA-Z][_\\w]*)",
 				"captures": {
 					"1": {"patterns": [{"include": "#state-selector"}]},
 					"2": {"patterns": [{"include": "#mut-modifier"}]},
 					"3": {"patterns": [{"include": "#types"}]},
 					"4": {"patterns": [{"include": "#identifier"}]}
+				}
+			},{
+				"match": "(\\w+)\\s+((?!mut)\\w+)\\s+([_a-zA-Z][_\\w]*)",
+				"captures": {
+					"1": {"patterns": [{"include": "#state-selector"}]},
+					"2": {"patterns": [{"include": "#types"}]},
+					"3": {"patterns": [{"include": "#identifier"}]}
 				}
 			}]
 		},
@@ -54,7 +75,7 @@
 			"patterns": [{
 				"match": "(@pay)\\s+((?:\"[^\"]*\"|\\/\\*.*?\\*\\/|(?!\")(?!\\/\\/)(?!\\/\\*).)*)(?<!\\s)\\s+(of)\\s+((?:\"[^\"]*\"|\\/\\*.*?\\*\\/|(?!\")(?!\\/\\/)(?!\\/\\*).)*)(?<!\\s)\\s*(:)\\s*((?:\"[^\"]*\"|\\/\\*.*?\\*\\/|(?!\")(?!\\/\\/)(?!\\/\\*).)*)(?<!\\s)\\s*(->)\\s*((?:\"[^\"]*\"|\\/\\*.*?\\*\\/|(?!\")(?!\\/\\/)(?!\\/\\*).)*)(?<!\\s)",
 				"captures": {
-					"1": {"patterns": [{"name": "support.function.algoml", "match": ".*"}]},
+					"1": {"patterns": [{"include": "#clause-keyword"}]},
 					"2": {"patterns": [{"include": "#pattern"}]},
 					"3": {"patterns": [{"name": "keyword.other.algoml", "match": ".*"}]},
 					"4": {"patterns": [{"include": "#pattern"}]},
@@ -69,7 +90,7 @@
 			"patterns": [{
 				"match": "(@close)\\s+((?:\"[^\"]*\"|\\/\\*.*?\\*\\/|(?!\")(?!\\/\\/)(?!\\/\\*).)*)(?<!\\s)\\s*(:)\\s*((?:\"[^\"]*\"|\\/\\*.*?\\*\\/|(?!\")(?!\\/\\/)(?!\\/\\*).)*)(?<!\\s)\\s*(->)\\s*((?:\"[^\"]*\"|\\/\\*.*?\\*\\/|(?!\")(?!\\/\\/)(?!\\/\\*).)*)(?<!\\s)",
 				"captures": {
-					"1": {"patterns": [{"name": "support.function.algoml", "match": ".*"}]},
+					"1": {"patterns": [{"include": "#clause-keyword"}]},
 					"2": {"patterns": [{"include": "#pattern"}]},
 					"3": {"patterns": [{"name": "keyword.other.algoml", "match": ".*"}]},
 					"4": {"patterns": [{"include": "#pattern"}]},
@@ -82,7 +103,7 @@
 			"patterns": [{
 				"match": "(@from)\\s+((?:\"[^\"]*\"|\\/\\*.*?\\*\\/|(?!\")(?!\\/\\/)(?!\\/\\*).)*)(?<!\\s)",
 				"captures": {
-					"1": {"patterns": [{"name": "support.function.algoml", "match": ".*"}]},
+					"1": {"patterns": [{"include": "#clause-keyword"}]},
 					"2": {"patterns": [{"include": "#pattern"}]}
 				}
 			}]
@@ -91,7 +112,7 @@
 			"patterns": [{
 				"match": "(@round)\\s+((?:\"[^\"]*\"|\\/\\*.*?\\*\\/|(?!\")(?!\\/\\/)(?!\\/\\*).)*)(?<!\\s)",
 				"captures": {
-					"1": {"patterns": [{"name": "support.function.algoml", "match": ".*"}]},
+					"1": {"patterns": [{"include": "#clause-keyword"}]},
 					"2": {"patterns": [{"include": "#pattern"}]}
 				}
 			}]
@@ -100,7 +121,7 @@
 			"patterns": [{
 				"match": "(@timestamp)\\s+((?:\"[^\"]*\"|\\/\\*.*?\\*\\/|(?!\")(?!\\/\\/)(?!\\/\\*).)*)(?<!\\s)",
 				"captures": {
-					"1": {"patterns": [{"name": "support.function.algoml", "match": ".*"}]},
+					"1": {"patterns": [{"include": "#clause-keyword"}]},
 					"2": {"patterns": [{"include": "#pattern"}]}
 				}
 			}]
@@ -109,7 +130,7 @@
 			"patterns": [{
 				"match": "(@(?:gstate|lstate))\\s+(?:((?:\"[^\"]*\"|\\/\\*.*?\\*\\/|(?!\")(?!\\/\\/)(?!\\/\\*).)*)(?<!\\s))?\\s*(->)\\s*((?:\"[^\"]*\"|\\/\\*.*?\\*\\/|(?!\")(?!\\/\\/)(?!\\/\\*).)*)?(?<!\\s)",
 				"captures": {
-					"1": {"patterns": [{"name": "support.function.algoml", "match": ".*"}]},
+					"1": {"patterns": [{"include": "#clause-keyword"}]},
 					"2": {"patterns": [{"include": "#identifier"}]},
 					"3": {"patterns": [{"name": "keyword.other.algoml", "match": ".*"}]},
 					"4": {"patterns": [{"include": "#identifier"}]}
@@ -120,7 +141,7 @@
 			"patterns": [{
 				"match": "(@newtok)\\s+((?:\"[^\"]*\"|\\/\\*.*?\\*\\/|(?!\")(?!\\/\\/)(?!\\/\\*).)*)(?<!\\s)\\s+(of)\\s+((?:\"[^\"]*\"|\\/\\*.*?\\*\\/|(?!\")(?!\\/\\/)(?!\\/\\*).)*)(?<!\\s)\\s*(->)\\s*((?:\"[^\"]*\"|\\/\\*.*?\\*\\/|(?!\")(?!\\/\\/)(?!\\/\\*).)*)(?<!\\s)",
 				"captures": {
-					"1": {"patterns": [{"name": "support.function.algoml", "match": ".*"}]},
+					"1": {"patterns": [{"include": "#clause-keyword"}]},
 					"2": {"patterns": [{"include": "#pattern"}]},
 					"3": {"patterns": [{"name": "keyword.other.algoml", "match": ".*"}]},
 					"4": {"patterns": [{"include": "#bound-identifier"}]},
@@ -133,7 +154,7 @@
 			"patterns": [{
 				"match": "(@assert)\\s+((?:\"[^\"]*\"|\\/\\*.*?\\*\\/|(?!\")(?!\\/\\/)(?!\\/\\*).)*)(?<!\\s)",
 				"captures": {
-					"1": {"patterns": [{"name": "support.function.algoml", "match": ".*"}]},
+					"1": {"patterns": [{"include": "#clause-keyword"}]},
 					"2": {"patterns": [{"include": "#expression"}]}
 				}
 			}]
@@ -156,6 +177,12 @@
 				"match": "[_a-zA-Z][_\\w]*"
 			}]
 		},
+		"clause-keyword": {
+			"patterns": [{
+				"name": "support.function.algoml",
+				"match": "@(pay|close|timestamp|round|assert|from|newtok|gstate|lstate)"
+			}]
+		},
 		"block": {
 			"patterns": [{
 				"begin": "\\{",
@@ -163,6 +190,8 @@
 					"include": "#comments"
 				},{
 					"include": "#command"
+				},{
+					"include": "#keywords"
 				}],
 				"end": "\\}"
 
@@ -196,7 +225,7 @@
 			},{
 				"include": "#if-command"
 			},{
-				"include": "#block-command"
+				"include": "#block"
 			}]
 		},
 		"assign-command": {
@@ -239,17 +268,6 @@
 				"captures": {
 					"1": {"patterns": [{"name": "keyword.control.algoml", "match": ".*"}]}
 				}
-			}]
-		},
-		"block-command": {
-			"patterns": [{
-				"begin": "{",
-				"patterns": [{
-					"include": "#comments"
-				},{
-					"include": "#command"
-				}],
-				"end": "}"
 			}]
 		},
 		"pattern": {
@@ -398,15 +416,6 @@
 				"endCaptures": {
 					"1": { "name": "punctuation.bracket.round.algoml" }
 				}
-			}]
-		},
-		"keywords": {
-			"patterns": [{
-				"name": "keyword.control.algoml",
-				"match": "\\b(if|while|for|return)\\b"
-			},{
-				"name": "keyword.other.algoml",
-				"match": "(\\b(of)\\b|->|:)"
 			}]
 		},
 		"strings": {
