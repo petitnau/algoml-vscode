@@ -16,3 +16,7 @@ Add highlighting on noncompleted clauses and declarations
 
 - Fix highlighting on function creation
 - Fix parts of words appearing as keywords
+
+### 1.2.0
+
+Add markdown fenced code injection (with identifier algoml)

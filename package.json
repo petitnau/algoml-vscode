@@ -2,7 +2,7 @@
 	"name": "algoml-lang",
 	"displayName": "AlgoML Lang",
 	"description": "Syntax highlighting for the Algorand Modelling Language",
-	"version": "1.1.1",
+	"version": "1.2.0",
 	"publisher": "RobertoPettinau",
 	"repository": "https://github.com/petitnau/algoml-vscode",
 	"engines": {
@@ -24,6 +24,9 @@
 					".algoml"
 				],
 				"configuration": "./language-configuration.json"
+			},
+			{
+				"id": "algoml-injection"
 			}
 		],
 		"grammars": [
@@ -31,6 +34,17 @@
 				"language": "algoml",
 				"scopeName": "source.algoml",
 				"path": "./syntaxes/algoml.tmLanguage.json"
+			},
+			{
+			  "language": "algoml-injection",
+			  "scopeName": "markdown.algoml.codeblock",
+			  "path": "./syntaxes/codeblock.json",
+			  "injectTo": [
+				"text.html.markdown"
+			  ],
+			  "embeddedLanguages": {
+				"meta.embedded.block.superjs": "algoml"
+			  }
 			}
 		]
 	},
